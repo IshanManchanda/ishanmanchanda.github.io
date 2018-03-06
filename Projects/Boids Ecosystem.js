@@ -280,7 +280,7 @@ function display() {
 
 function setup() {
 	createCanvas(width, height);
-	frameRate(12);
+	frameRate(60);
 
 	for (let i = 0; i < boidInitial; i++) {
 		boids.push(new Boid(
