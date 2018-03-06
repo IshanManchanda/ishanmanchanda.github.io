@@ -12,6 +12,10 @@ const predatorSight = width * height / 2400;
 let boids = [];
 let predators = [];
 
+let cohesion = true;
+let alignment = true;
+let separation = true;
+
 
 function Boid(position, velocity, speed) {
 	velocity.normalize();
@@ -215,7 +219,7 @@ function Predator(position, velocity, speed) {
 			let distance = dist(this.position.x, this.position.y, predators[p].position.x, predators[p].position.y);
 			let angle = this.velocity.angleBetween(predators[p].velocity);
 
-			if ((distance < (boidSight / 4)) && (angle < PI)) {
+			if ((distance < (predatorSight / 4)) && (angle < PI)) {
 				target.sub(predators[p].position);
 				count++;
 			}
@@ -229,12 +233,54 @@ function Predator(position, velocity, speed) {
 			this.acceleration.add(target);
 		}
 	};
+
+	this.eat = function() {
+		let b;
+		for (b = boids.length - 1; b > -1; --b) {
+			let distance = dist(this.position.x, this.position.y, boids[b].position.x, boids[b].position.y);
+			if (distance <= predatorSize * 3.2) {
+				boids.splice(b, 1);
+			}
+		}
+	};
+}
+
+
+function display() {
+	textSize(12);
+	fill(0, 255, 179);
+
+	text("Number of Boids:" + boids.length, 6, height - 10);
+	if (cohesion) {
+		fill(0, 255, 0);
+	}
+	else {
+		fill(255, 0, 0);
+	}
+	text("Cohesion: " + cohesion, 6, height-54);
+
+	if (separation) {
+		fill(0, 255, 0);
+	}
+	else {
+		fill(255, 0, 0);
+	}
+	text("Separation: " + separation, 6, height-25);
+
+	if (alignment) {
+		fill(0, 255, 0);
+	}
+	else {
+		fill(255, 0, 0);
+	}
+	text("Alignment: " + alignment, 6, height-40);
+
 }
 
 
 function setup() {
 	createCanvas(width, height);
-	frameRate(60);
+	frameRate(12);
 
 	for (let i = 0; i < boidInitial; i++) {
 		boids.push(new Boid(
@@ -247,17 +293,18 @@ function setup() {
 		predators.push(new Predator(
 			createVector(Math.floor(Math.random() * width), Math.floor(Math.random() * height)),
 			createVector(Math.floor(Math.random() * 8), Math.floor(Math.random() * 8)),
-			8
+			10
 		))
 	}
 }
+
 
 function draw() {
 	background(0);
 
 	for (let b in boids) {
 		for (let p in predators) {
-			boids[b].flee(predators[p])
+			boids[b].flee(predators[p]);
 		}
 		boids[b].align();
 		boids[b].space();
@@ -271,7 +318,10 @@ function draw() {
 			predators[p].pursue(boids[b]);
 		}
 		predators[p].space();
+		predators[p].eat();
 		predators[p].update();
 		predators[p].draw();
 	}
+
+	display();
 }
