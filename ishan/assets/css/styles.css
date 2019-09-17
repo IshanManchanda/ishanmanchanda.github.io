@@ -1,71 +1,68 @@
 @media (min-width: 992px) {
-  #landing {
-    height:200vh;
-    width:55% !important;
-    margin:80px auto !important;
-  }
+	#landing {
+		height:200vh;
+		width:55% !important;
+		margin:80px auto !important;
+	}
 }
 
 @media (min-width: 300px) {
-  #landing {
-    height:100%;
-    width:85%;
-    margin:30px auto;
-  }
+	#landing {
+		height:100%;
+		width:85%;
+		margin:30px auto;
+	}
 }
 
 body {
-  font-family:'IBM Plex Sans', sans-serif;
-  font-family:'IBM Plex Sans Condensed', sans-serif;
+	font-family:'IBM Plex Sans', sans-serif;
+	font-family:'IBM Plex Sans Condensed', sans-serif;
 }
 
 .text-secondary.title {
-  margin-bottom:75px;
+	margin-bottom:75px;
 }
 
 .navbar {
-  padding:20px;
-  background-color:#fff;
+	padding:20px;
+	background-color:#fff;
 }
 
 .col-sm-6 {
-  margin-bottom:40px;
+	margin-bottom:40px;
 }
 
 #logo {
-  font-size:22px;
+	font-size:22px;
 }
 
 #card-feet {
-  height:50px;
-  padding:10px;
+	height:50px;
+	padding:10px;
 }
 
 .card-img {
-  margin-left:10px;
-  margin-right:10px;
+	margin-left:10px;
+	margin-right:10px;
 }
 
 .card-logo {
-  width:255px;
-  height:220px;
+	width:255px;
+	height:220px;
 }
 
 hr {
-  margin:0px;
+	margin:0px;
 }
 
 .card{
-  transition: 0.15s ease-in-out ;
-  border-radius: 5px;
-  opacity: 0.85;
+	transition: 0.15s ease-in-out ;
+	border-radius: 5px;
+	opacity: 0.85;
 }
 
 .card:hover{
-  transform: scale(1.005) translateY(-5px);
-  box-shadow: 0 9px 20px -10px #eaeaeb;
-  opacity: 1;
+	transform: scale(1.005) translateY(-5px);
+	box-shadow: 0 9px 20px -10px #eaeaeb;
+	opacity: 1;
 }
-
-
-

@@ -1,1 +1,1 @@
-alert("coming soon!")
+alert("coming soon!");
